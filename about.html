@@ -1,0 +1,837 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About | Corner Canteen — Crediton, Devon</title>
+    <meta
+      name="description"
+      content="Learn about Corner Canteen — fresh food served from 8 Park Street, Crediton. Meet the person behind the canteen and discover our values."
+    />
+    <meta name="theme-color" content="#f6f3ee" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <style>
+      /* ── OWNER SECTION ──────────────────────────────────── */
+      .owner-grid {
+        display: grid;
+        grid-template-columns: 420px 1fr;
+        gap: var(--space-10);
+        align-items: start;
+        margin-bottom: var(--space-16);
+      }
+
+      /* ┌─────────────────────────────────────────────────────┐
+         │  PHOTO PLACEHOLDER                                  │
+         │  Replace the <div class="photo-placeholder"> block  │
+         │  with: <img src="your-photo.jpg" alt="Your name"   │
+         │  class="owner-photo" />                             │
+         └─────────────────────────────────────────────────────┘ */
+      .owner-photo-wrap {
+        position: relative;
+      }
+
+      .owner-photo {
+        width: 100%;
+        aspect-ratio: 3/4;
+        object-fit: cover;
+        object-position: top center;
+        border-radius: var(--radius-2xl);
+        display: block;
+        box-shadow: var(--shadow-lg);
+      }
+
+      /* This is the placeholder shown until a real photo is added */
+      .photo-placeholder {
+        width: 100%;
+        aspect-ratio: 3/4;
+        border-radius: var(--radius-2xl);
+        background: var(--color-surface-2);
+        border: 2px dashed var(--color-border);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-4);
+        color: var(--color-text-faint);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .photo-placeholder svg {
+        width: 56px;
+        height: 56px;
+        color: var(--color-text-faint);
+        opacity: 0.5;
+      }
+
+      .photo-placeholder p {
+        font-size: var(--text-sm);
+        font-weight: 600;
+        color: var(--color-text-faint);
+        text-align: center;
+        padding: 0 var(--space-6);
+        line-height: 1.6;
+      }
+
+      .photo-placeholder code {
+        font-size: var(--text-xs);
+        background: var(--color-surface-offset);
+        padding: var(--space-1) var(--space-2);
+        border-radius: var(--radius-sm);
+        color: var(--color-primary);
+        font-family: monospace;
+      }
+
+      /* Accent badge on photo */
+      .owner-photo-badge {
+        position: absolute;
+        bottom: var(--space-5);
+        left: var(--space-5);
+        right: var(--space-5);
+        background: rgba(30, 26, 20, 0.82);
+        color: var(--color-white);
+        border-radius: var(--radius-lg);
+        padding: var(--space-4) var(--space-5);
+        backdrop-filter: blur(8px);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+      }
+
+      .owner-photo-badge strong {
+        font-size: var(--text-base);
+        font-weight: 700;
+        display: block;
+      }
+
+      .owner-photo-badge span {
+        font-size: var(--text-sm);
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      /* Owner copy */
+      .owner-copy {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-6);
+        padding-top: var(--space-4);
+      }
+
+      .owner-copy h2 {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 4vw, 4rem);
+        line-height: 0.95;
+      }
+
+      .owner-copy p {
+        color: var(--color-text-muted);
+        font-size: var(--text-md);
+        line-height: 1.75;
+        max-width: 58ch;
+      }
+
+      .owner-quote {
+        border-left: 4px solid var(--color-primary);
+        padding: var(--space-4) var(--space-6);
+        background: var(--color-primary-highlight);
+        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+        line-height: 1.4;
+        color: var(--color-primary-dark);
+        font-style: italic;
+      }
+
+      /* ── VALUES ─────────────────────────────────────────── */
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-5);
+        margin-bottom: var(--space-16);
+      }
+
+      .value-card {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: var(--space-7);
+        box-shadow: var(--shadow-sm);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+      }
+
+      .value-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: var(--radius-md);
+        background: var(--color-primary-highlight);
+        display: grid;
+        place-items: center;
+        color: var(--color-primary-dark);
+        flex-shrink: 0;
+      }
+
+      .value-icon svg {
+        width: 24px;
+        height: 24px;
+      }
+      .value-card h3 {
+        font-size: var(--text-lg);
+        font-weight: 700;
+        line-height: 1.3;
+      }
+      .value-card p {
+        color: var(--color-text-muted);
+        font-size: var(--text-sm);
+        line-height: 1.65;
+      }
+
+      /* ── CANTEEN PHOTOS STRIP ───────────────────────────── */
+      .photo-strip {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr;
+        gap: var(--space-4);
+        margin-bottom: var(--space-16);
+      }
+
+      .photo-strip-item {
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--color-border);
+      }
+
+      .photo-strip-item img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        display: block;
+        transition: transform var(--transition-slow);
+      }
+
+      .photo-strip-item:hover img {
+        transform: scale(1.04);
+      }
+
+      /* ── MAP ────────────────────────────────────────────── */
+      .location-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-8);
+        align-items: start;
+        margin-bottom: var(--space-16);
+      }
+
+      .map-embed {
+        border-radius: var(--radius-2xl);
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--color-border);
+        height: 420px;
+      }
+
+      .map-embed iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+      }
+
+      .location-info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-5);
+      }
+
+      .location-info h2 {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 3.5vw, 3.2rem);
+        line-height: 1;
+      }
+
+      .location-info p {
+        color: var(--color-text-muted);
+        font-size: var(--text-sm);
+        line-height: 1.65;
+      }
+
+      .location-detail {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-3);
+      }
+
+      .location-detail-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-md);
+        background: var(--color-surface-offset);
+        display: grid;
+        place-items: center;
+        color: var(--color-primary);
+        flex-shrink: 0;
+      }
+
+      .location-detail-text p {
+        font-weight: 700;
+        font-size: var(--text-sm);
+        margin-bottom: var(--space-1);
+      }
+      .location-detail-text span {
+        color: var(--color-text-muted);
+        font-size: var(--text-sm);
+        line-height: 1.55;
+      }
+
+      .hours-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: var(--text-sm);
+      }
+
+      .hours-table tr {
+        border-bottom: 1px solid var(--color-divider);
+      }
+      .hours-table tr:last-child {
+        border-bottom: none;
+      }
+      .hours-table td {
+        padding: var(--space-2) 0;
+        color: var(--color-text-muted);
+      }
+      .hours-table td:last-child {
+        text-align: right;
+        font-weight: 600;
+        color: var(--color-text);
+      }
+      .hours-table .closed {
+        color: var(--color-text-faint) !important;
+        font-weight: 400 !important;
+      }
+
+      /* ── RESPONSIVE ─────────────────────────────────────── */
+      @media (max-width: 1024px) {
+        .owner-grid {
+          grid-template-columns: 320px 1fr;
+          gap: var(--space-8);
+        }
+        .values-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .location-grid {
+          grid-template-columns: 1fr;
+        }
+        .photo-strip {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .owner-grid {
+          grid-template-columns: 1fr;
+        }
+        .values-grid {
+          grid-template-columns: 1fr;
+        }
+        .photo-strip {
+          grid-template-columns: 1fr;
+        }
+        .map-embed {
+          height: 320px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="container nav-bar">
+        <a href="index.html" class="brand" aria-label="Corner Canteen home">
+          <div class="brand-mark" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 11l19-9-9 19-2-8-8-2z" />
+            </svg>
+          </div>
+          <div class="brand-text">
+            <small>Crediton, Devon</small>
+            <strong>Corner Canteen</strong>
+          </div>
+        </a>
+
+        <button
+          class="nav-toggle"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          type="button"
+        >
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav aria-label="Primary navigation">
+          <ul class="nav-links" id="primary-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="delivery.html">Delivery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li>
+              <a href="contact.html" class="btn btn-primary">Order Now</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <!-- PAGE HERO -->
+      <section class="page-hero">
+        <div class="container reveal">
+          <span class="text-section-label">Our story · Crediton</span>
+          <h1>Good food starts with good people.</h1>
+          <p>
+            Corner Canteen was born from a simple idea — that everyone in
+            Crediton deserves access to honest, freshly cooked food without the
+            fuss. From our corner on Park Street, we serve the community one
+            plate at a time.
+          </p>
+        </div>
+      </section>
+
+      <div class="container">
+        <!-- ══ OWNER SECTION ══ -->
+        <div class="owner-grid">
+          <div class="owner-photo-wrap reveal">
+            <!--
+            ╔══════════════════════════════════════════════════════╗
+            ║  CLIENT PHOTO — INSTRUCTIONS                         ║
+            ║                                                      ║
+            ║  1. Save the client's photo into the project folder  ║
+            ║     e.g. assets/images/jalf-fletcher.jpg             ║
+            ║                                                      ║
+            ║  2. DELETE the <div class="photo-placeholder">       ║
+            ║     block below entirely                             ║
+            ║                                                      ║
+            ║  3. PASTE this in its place:                         ║
+            ║                                                       ║
+            ║  <img                                                ║
+            ║    src="assets/images/jalf-fletcher.jpg"             ║
+            ║    alt="Jalf Fletcher, owner of Corner Canteen"      ║
+            ║    class="owner-photo"                               ║
+            ║  />                                                   ║
+            ╚══════════════════════════════════════════════════════╝
+            -->
+
+            <!-- REMOVE THIS BLOCK when real photo is ready -->
+            <div class="photo-placeholder" aria-label="Photo placeholder">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              <p>
+                Client photo goes here.<br />
+                Save photo as:<br />
+                <code>assets/images/jalf-fletcher.jpg</code>
+              </p>
+            </div>
+            <!-- END PLACEHOLDER -->
+
+            <!-- Name badge — stays visible over both placeholder and real photo -->
+            <div class="owner-photo-badge">
+              <strong>Jalf Fletcher</strong>
+              <span>Owner & Head Cook · Corner Canteen</span>
+            </div>
+          </div>
+
+          <div class="owner-copy reveal reveal-delay-1">
+            <span class="text-section-label">Meet the owner</span>
+            <h2>Hi, I'm Jalf — and I cook every single dish myself.</h2>
+
+            <p>
+              I started Corner Canteen because I wanted to give Crediton
+              something it was missing — a proper local canteen where you could
+              walk in, sit down, and eat something genuinely good without
+              spending a fortune or waiting forever.
+            </p>
+
+            <p>
+              I'm 28 years old and I've been cooking professionally since I was
+              19. Before opening here at 8 Park Street, I worked in kitchens
+              across Devon learning how to make simple food taste exceptional.
+              The focus has always been the same: fresh ingredients, honest
+              recipes, and cooking with care.
+            </p>
+
+            <blockquote class="owner-quote">
+              "There's nothing complicated about good food. You just have to
+              care about what you're serving and who you're serving it to."
+            </blockquote>
+
+            <p>
+              Today we serve breakfasts, hot mains, sides and desserts Monday to
+              Saturday — and we deliver across the whole EX17 area. Whether
+              you're a regular who pops in every morning or someone ordering
+              lunch from the office, you'll always get the same quality plate.
+            </p>
+
+            <div class="btn-group">
+              <a href="menu.html" class="btn btn-primary">See the menu</a>
+              <a href="contact.html" class="btn btn-outline-primary"
+                >Get in touch</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ CANTEEN PHOTOS ══ -->
+        <div class="photo-strip">
+          <div class="photo-strip-item reveal">
+            <img
+              src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80&fit=crop"
+              alt="Corner Canteen interior with counter and seating"
+              loading="lazy"
+            />
+          </div>
+          <div class="photo-strip-item reveal reveal-delay-1">
+            <img
+              src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=600&q=80&fit=crop"
+              alt="Fresh food being prepared in the canteen kitchen"
+              loading="lazy"
+            />
+          </div>
+          <div class="photo-strip-item reveal reveal-delay-2">
+            <img
+              src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=600&q=80&fit=crop"
+              alt="Freshly plated meal at Corner Canteen"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <!-- ══ VALUES ══ -->
+        <div style="margin-bottom: var(--space-8)">
+          <div class="section-head reveal">
+            <div>
+              <span class="text-section-label">What we stand for</span>
+              <h2 class="section-heading">Our values.</h2>
+            </div>
+            <p class="section-subheading">
+              Everything we do at Corner Canteen comes back to these three
+              things.
+            </p>
+          </div>
+        </div>
+
+        <div class="values-grid">
+          <div class="value-card reveal">
+            <div class="value-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <h3>Freshness above everything</h3>
+            <p>
+              Every item on the menu is cooked fresh that day. We don't freeze,
+              we don't reheat, and we don't serve anything we wouldn't be proud
+              to eat ourselves.
+            </p>
+          </div>
+
+          <div class="value-card reveal reveal-delay-1">
+            <div class="value-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <h3>Community first</h3>
+            <p>
+              We're part of Crediton, not just a business in it. We source
+              locally where we can, support our neighbours, and try to be the
+              kind of place people are genuinely glad exists.
+            </p>
+          </div>
+
+          <div class="value-card reveal reveal-delay-2">
+            <div class="value-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              </svg>
+            </div>
+            <h3>Honest pricing</h3>
+            <p>
+              Good food shouldn't cost a fortune. We keep our prices fair
+              because we want everyone in Crediton to be able to afford a proper
+              hot meal without it being a treat.
+            </p>
+          </div>
+        </div>
+
+        <!-- ══ LOCATION + MAP ══ -->
+        <div class="location-grid">
+          <div class="map-embed reveal">
+            <!--
+              Google Maps embed for 8 Park Street, Crediton, EX17 3HL
+              To get a more accurate embed:
+              1. Go to maps.google.com
+              2. Search: 8 Park Street, Crediton, EX17 3HL
+              3. Click Share → Embed a map → Copy HTML
+              4. Replace the iframe src below with your copied src
+            -->
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2525.8!2d-3.6582!3d50.7908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486da4b1a8e6e1c5%3A0x1234567890abcdef!2s8%20Park%20St%2C%20Crediton%20EX17%203HL!5e0!3m2!1sen!2suk!4v1234567890"
+              title="Corner Canteen location — 8 Park Street, Crediton EX17 3HL"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+
+          <div class="location-info reveal reveal-delay-1">
+            <span class="text-section-label">Find us</span>
+            <h2>Visit us on Park Street.</h2>
+            <p>
+              We're easy to find right in the heart of Crediton. There's parking
+              nearby on the high street and we're a short walk from the town
+              centre bus stops.
+            </p>
+
+            <div class="location-detail">
+              <div class="location-detail-icon" aria-hidden="true">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div class="location-detail-text">
+                <p>Address</p>
+                <span>8 Park Street<br />Crediton, Devon<br />EX17 3HL</span>
+              </div>
+            </div>
+
+            <div class="location-detail">
+              <div class="location-detail-icon" aria-hidden="true">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3-8.57A2 2 0 0 1 3.73 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+              </div>
+              <div class="location-detail-text">
+                <p>Phone</p>
+                <span
+                  ><a
+                    href="tel:+447783461922"
+                    style="color: var(--color-primary); font-weight: 700"
+                    >+44 7783 461922</a
+                  ></span
+                >
+              </div>
+            </div>
+
+            <div class="location-detail">
+              <div class="location-detail-icon" aria-hidden="true">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              </div>
+              <div class="location-detail-text">
+                <p>Opening hours</p>
+                <span>
+                  <table
+                    class="hours-table"
+                    aria-label="Opening hours"
+                    style="margin-top: var(--space-2)"
+                  >
+                    <tbody>
+                      <tr>
+                        <td>Monday – Friday</td>
+                        <td>7:30am – 3:00pm</td>
+                      </tr>
+                      <tr>
+                        <td>Saturday</td>
+                        <td>7:30am – 1:30pm</td>
+                      </tr>
+                      <tr>
+                        <td>Sunday</td>
+                        <td class="closed">Closed</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </span>
+              </div>
+            </div>
+
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=8+Park+Street+Crediton+EX17+3HL"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+              style="align-self: flex-start"
+            >
+              Get directions →
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- /container -->
+
+      <!-- CTA -->
+      <section class="cta-section">
+        <div class="container">
+          <div class="cta-box reveal">
+            <span class="text-section-label">Come and see us</span>
+            <h2>Pop in, order online, or give us a ring.</h2>
+            <p>
+              Whether you eat in at the canteen or want fresh food delivered to
+              your door across EX17 — we'd love to feed you. Open Monday to
+              Saturday from 7:30am.
+            </p>
+            <div class="btn-group">
+              <a href="menu.html" class="btn btn-light">See the menu</a>
+              <a href="contact.html" class="btn btn-outline-light"
+                >Order or enquire</a
+              >
+              <a href="tel:+447783461922" class="btn btn-outline-light"
+                >📞 +44 7783 461922</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand" aria-label="Corner Canteen home">
+            <div class="brand-mark" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 11l19-9-9 19-2-8-8-2z" />
+              </svg>
+            </div>
+            <div class="brand-text">
+              <small>Crediton, Devon</small>
+              <strong>Corner Canteen</strong>
+            </div>
+          </a>
+          <p>
+            Fresh breakfasts, hot mains, sides and desserts served daily from 8
+            Park Street, Crediton. Eat in or get it delivered across EX17.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="delivery.html">Delivery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+447783461922">+44 7783 461922</a></li>
+            <li><a href="contact.html">Send a message</a></li>
+            <li><a href="about.html">8 Park Street, Crediton</a></li>
+            <li><a href="about.html">EX17 3HL, Devon</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>© 2026 Corner Canteen, Crediton. All rights reserved.</p>
+        <p>Fresh food · Local delivery · EX17</p>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+  </body>
+</html>

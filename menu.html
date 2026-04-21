@@ -1,0 +1,1024 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu | Corner Canteen — Crediton, Devon</title>
+    <meta
+      name="description"
+      content="Browse the full Corner Canteen menu — fresh breakfasts, hot mains, homemade sides, drinks and daily desserts. Order in-store or get delivery across EX17."
+    />
+    <meta name="theme-color" content="#f6f3ee" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <style>
+      .menu-grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-5);
+      }
+      .menu-grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-5);
+      }
+
+      /* Sticky tab bar */
+      .tab-bar-wrap {
+        position: sticky;
+        top: 80px;
+        z-index: 100;
+        background: rgba(246, 243, 238, 0.96);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--color-border);
+        padding: var(--space-4) 0;
+        margin-bottom: var(--space-10);
+      }
+
+      /* Allergen notice */
+      .allergen-bar {
+        background: var(--color-accent-light);
+        border: 1px solid rgba(212, 136, 42, 0.25);
+        border-radius: var(--radius-lg);
+        padding: var(--space-4) var(--space-5);
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-3);
+        margin-bottom: var(--space-8);
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        line-height: 1.6;
+      }
+
+      .allergen-bar svg {
+        width: 20px;
+        height: 20px;
+        color: var(--color-accent);
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      /* Drinks — horizontal list style */
+      .drinks-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-4);
+      }
+
+      .drink-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--space-4) var(--space-5);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        gap: var(--space-4);
+      }
+
+      .drink-info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+      }
+      .drink-name {
+        font-weight: 700;
+        font-size: var(--text-base);
+      }
+      .drink-desc {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+      }
+      .drink-price {
+        font-weight: 800;
+        font-size: var(--text-lg);
+        color: var(--color-primary);
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      /* Specials banner */
+      .specials-banner {
+        background: linear-gradient(135deg, #1e2f1f, #3d5a3e);
+        color: var(--color-white);
+        border-radius: var(--radius-2xl);
+        padding: clamp(var(--space-8), 4vw, var(--space-12));
+        margin-bottom: var(--space-10);
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: var(--space-6);
+        align-items: center;
+      }
+
+      .specials-banner h2 {
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem, 3.5vw, 3rem);
+        line-height: 1;
+        margin-bottom: var(--space-3);
+      }
+
+      .specials-banner p {
+        color: rgba(255, 255, 255, 0.78);
+        max-width: 52ch;
+      }
+
+      @media (max-width: 1024px) {
+        .menu-grid-4 {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .menu-grid-3 {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .menu-grid-4 {
+          grid-template-columns: 1fr;
+        }
+        .menu-grid-3 {
+          grid-template-columns: 1fr;
+        }
+        .drinks-list {
+          grid-template-columns: 1fr;
+        }
+        .specials-banner {
+          grid-template-columns: 1fr;
+        }
+        .tab-bar-wrap {
+          top: 80px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="container nav-bar">
+        <a href="index.html" class="brand" aria-label="Corner Canteen home">
+          <div class="brand-mark" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 11l19-9-9 19-2-8-8-2z" />
+            </svg>
+          </div>
+          <div class="brand-text">
+            <small>Crediton, Devon</small>
+            <strong>Corner Canteen</strong>
+          </div>
+        </a>
+
+        <button
+          class="nav-toggle"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          type="button"
+        >
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav aria-label="Primary navigation">
+          <ul class="nav-links" id="primary-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="delivery.html">Delivery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li>
+              <a href="contact.html" class="btn btn-primary">Order Now</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <!-- PAGE HERO -->
+      <section class="page-hero">
+        <div class="container reveal">
+          <span class="text-section-label">Fresh daily · Crediton</span>
+          <h1>Everything on our menu, made fresh.</h1>
+          <p>
+            From a hearty full English to a hot bowl of soup, every item is
+            cooked fresh daily using locally sourced ingredients wherever
+            possible. Eat in or order for delivery across EX17.
+          </p>
+        </div>
+      </section>
+
+      <!-- STICKY TAB BAR -->
+      <div class="tab-bar-wrap">
+        <div class="container">
+          <div class="tab-bar" role="tablist" aria-label="Menu categories">
+            <button
+              class="tab-btn active"
+              data-tab="breakfast"
+              role="tab"
+              aria-selected="true"
+            >
+              🍳 Breakfast
+            </button>
+            <button
+              class="tab-btn"
+              data-tab="mains"
+              role="tab"
+              aria-selected="false"
+            >
+              🍽 Mains
+            </button>
+            <button
+              class="tab-btn"
+              data-tab="sides"
+              role="tab"
+              aria-selected="false"
+            >
+              🥗 Sides
+            </button>
+            <button
+              class="tab-btn"
+              data-tab="drinks"
+              role="tab"
+              aria-selected="false"
+            >
+              ☕ Drinks
+            </button>
+            <button
+              class="tab-btn"
+              data-tab="specials"
+              role="tab"
+              aria-selected="false"
+            >
+              ⭐ Specials
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- ALLERGEN NOTICE -->
+        <div class="allergen-bar reveal">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+          <span
+            ><strong>Allergen information:</strong> Some dishes contain gluten,
+            dairy, eggs, nuts or other allergens. Please speak to a member of
+            staff before ordering if you have any dietary requirements or
+            allergies. Prices include VAT.</span
+          >
+        </div>
+
+        <!-- ══ BREAKFAST ══ -->
+        <div
+          class="tab-panel active menu-grid-3"
+          data-panel="breakfast"
+          role="tabpanel"
+        >
+          <article class="menu-card reveal">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&q=80&fit=crop"
+              alt="Full English breakfast"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Full English Breakfast</span>
+                <span class="menu-card-price">£7.50</span>
+              </div>
+              <p class="menu-card-desc">
+                Two eggs your way, back bacon, pork sausage, baked beans,
+                grilled tomato, mushrooms and thick-cut toast.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge badge-green">Most popular</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal reveal-delay-1">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80&fit=crop"
+              alt="Veggie breakfast"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Veggie Breakfast</span>
+                <span class="menu-card-price">£6.95</span>
+              </div>
+              <p class="menu-card-desc">
+                Two fried eggs, veggie sausage, grilled mushrooms, roasted
+                tomato, baked beans and buttered toast.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge badge-green">Vegetarian</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal reveal-delay-2">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1484723091739-30990106e577?w=600&q=80&fit=crop"
+              alt="Eggs on toast"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Eggs on Toast</span>
+                <span class="menu-card-price">£4.50</span>
+              </div>
+              <p class="menu-card-desc">
+                Two eggs — fried, poached or scrambled — on thick-cut white or
+                brown toast with butter.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge badge-green">Vegetarian</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=600&q=80&fit=crop"
+              alt="Bacon butty"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Bacon Butty</span>
+                <span class="menu-card-price">£3.95</span>
+              </div>
+              <p class="menu-card-desc">
+                Three rashers of back bacon in a soft white or brown roll with
+                your choice of sauce.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge">Quick bite</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal reveal-delay-1">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1603046891744-1f9c4edc9b02?w=600&q=80&fit=crop"
+              alt="Porridge with berries"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Porridge & Berries</span>
+                <span class="menu-card-price">£3.50</span>
+              </div>
+              <p class="menu-card-desc">
+                Creamy oat porridge topped with seasonal berries and a drizzle
+                of Devon honey.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge badge-green">Vegetarian</span
+                ><span class="badge">Light</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal reveal-delay-2">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=600&q=80&fit=crop"
+              alt="Sausage sandwich"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Sausage Sandwich</span>
+                <span class="menu-card-price">£4.25</span>
+              </div>
+              <p class="menu-card-desc">
+                Two pork sausages in a toasted roll with onions and your choice
+                of brown or tomato sauce.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge">Quick bite</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- ══ MAINS ══ -->
+        <div class="tab-panel menu-grid-3" data-panel="mains" role="tabpanel">
+          <article class="menu-card reveal">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=600&q=80&fit=crop"
+              alt="Beef stew"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Beef & Root Veg Stew</span>
+                <span class="menu-card-price">£9.95</span>
+              </div>
+              <p class="menu-card-desc">
+                Slow-cooked Devon beef with carrots, parsnips and potatoes in a
+                rich gravy. Served with crusty bread.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge badge-green">Chef's pick</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal reveal-delay-1">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1547592180-85f173990554?w=600&q=80&fit=crop"
+              alt="Soup of the day"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Soup of the Day</span>
+                <span class="menu-card-price">£5.50</span>
+              </div>
+              <p class="menu-card-desc">
+                Freshly made soup served with a warm crusty roll and butter. Ask
+                us what's on today.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge badge-green">Vegetarian</span
+                ><span class="badge badge-amber">Daily</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal reveal-delay-2">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=600&q=80&fit=crop"
+              alt="Jacket potato"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Jacket Potato</span>
+                <span class="menu-card-price">£6.50</span>
+              </div>
+              <p class="menu-card-desc">
+                Large baked potato with your choice of filling — tuna mayo,
+                cheese, beans, or coleslaw.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge badge-green">Vegetarian option</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&q=80&fit=crop"
+              alt="Cheese toastie"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Toasted Sandwich</span>
+                <span class="menu-card-price">£4.95</span>
+              </div>
+              <p class="menu-card-desc">
+                Toasted thick-cut bread with your choice of filling — cheese,
+                ham & cheese, or tuna melt.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge">Lunchtime</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal reveal-delay-1">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80&fit=crop"
+              alt="Pie and mash"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Pie & Mash</span>
+                <span class="menu-card-price">£8.95</span>
+              </div>
+              <p class="menu-card-desc">
+                Shortcrust pastry pie with seasonal filling, creamy mashed
+                potato and rich onion gravy.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge badge-green">Chef's pick</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal reveal-delay-2">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600&q=80&fit=crop"
+              alt="Pasta dish"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Pasta of the Day</span>
+                <span class="menu-card-price">£7.50</span>
+              </div>
+              <p class="menu-card-desc">
+                Freshly made pasta dish that changes daily. Ask at the counter
+                for today's option.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge badge-amber">Daily</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- ══ SIDES ══ -->
+        <div class="tab-panel menu-grid-4" data-panel="sides" role="tabpanel">
+          <article class="menu-card reveal">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1630431341973-02e1b662ec35?w=500&q=80&fit=crop"
+              alt="Chunky chips"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Chunky Chips</span>
+                <span class="menu-card-price">£2.95</span>
+              </div>
+              <p class="menu-card-desc">
+                Thick-cut fried chips, lightly salted and golden.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge badge-green">Vegetarian</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal reveal-delay-1">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=80&fit=crop"
+              alt="Side salad"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Side Salad</span>
+                <span class="menu-card-price">£2.50</span>
+              </div>
+              <p class="menu-card-desc">
+                Mixed leaves, tomato, cucumber and red onion with a light
+                dressing.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge badge-green">Vegan</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal reveal-delay-2">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1546793665-c74683f339c1?w=500&q=80&fit=crop"
+              alt="Baked beans"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Baked Beans</span>
+                <span class="menu-card-price">£1.50</span>
+              </div>
+              <p class="menu-card-desc">
+                Classic baked beans in tomato sauce, served hot.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge badge-green">Vegan</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal reveal-delay-3">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80&fit=crop"
+              alt="Coleslaw"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Homemade Coleslaw</span>
+                <span class="menu-card-price">£1.75</span>
+              </div>
+              <p class="menu-card-desc">
+                Creamy homemade coleslaw with white cabbage and carrot.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge badge-green">Vegetarian</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=500&q=80&fit=crop"
+              alt="Buttered bread"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Bread & Butter</span>
+                <span class="menu-card-price">£1.00</span>
+              </div>
+              <p class="menu-card-desc">
+                Two slices of white or brown bread with butter.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge badge-green">Vegetarian</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal reveal-delay-1">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1576107232684-1279f390859f?w=500&q=80&fit=crop"
+              alt="Gravy"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Pot of Gravy</span>
+                <span class="menu-card-price">£1.25</span>
+              </div>
+              <p class="menu-card-desc">
+                Rich homemade gravy served in a small pot, perfect alongside any
+                main.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge">Add-on</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal reveal-delay-2">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&q=80&fit=crop"
+              alt="Onion rings"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Onion Rings</span>
+                <span class="menu-card-price">£2.25</span>
+              </div>
+              <p class="menu-card-desc">
+                Crispy battered onion rings, lightly seasoned.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge badge-green">Vegetarian</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal reveal-delay-3">
+            <img
+              class="menu-card-img"
+              src="https://images.unsplash.com/photo-1589187151053-5ec8818e661b?w=500&q=80&fit=crop"
+              alt="Mashed potato"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-header">
+                <span class="menu-card-title">Creamy Mash</span>
+                <span class="menu-card-price">£2.50</span>
+              </div>
+              <p class="menu-card-desc">
+                Buttery creamy mashed potato, made fresh daily.
+              </p>
+              <div class="menu-card-tags">
+                <span class="badge badge-green">Vegetarian</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- ══ DRINKS ══ -->
+        <div class="tab-panel" data-panel="drinks" role="tabpanel">
+          <div class="drinks-list reveal">
+            <div class="drink-row">
+              <div class="drink-info">
+                <span class="drink-name">Mug of Tea</span>
+                <span class="drink-desc"
+                  >Builders brew, milk and sugar on the side</span
+                >
+              </div>
+              <span class="drink-price">£1.80</span>
+            </div>
+
+            <div class="drink-row">
+              <div class="drink-info">
+                <span class="drink-name">Filter Coffee</span>
+                <span class="drink-desc"
+                  >Fresh filter, served black or with milk</span
+                >
+              </div>
+              <span class="drink-price">£2.20</span>
+            </div>
+
+            <div class="drink-row">
+              <div class="drink-info">
+                <span class="drink-name">Cappuccino</span>
+                <span class="drink-desc"
+                  >Espresso with steamed and foamed milk</span
+                >
+              </div>
+              <span class="drink-price">£2.80</span>
+            </div>
+
+            <div class="drink-row">
+              <div class="drink-info">
+                <span class="drink-name">Latte</span>
+                <span class="drink-desc"
+                  >Double espresso with steamed milk</span
+                >
+              </div>
+              <span class="drink-price">£2.80</span>
+            </div>
+
+            <div class="drink-row">
+              <div class="drink-info">
+                <span class="drink-name">Hot Chocolate</span>
+                <span class="drink-desc"
+                  >Rich creamy hot chocolate with whipped cream</span
+                >
+              </div>
+              <span class="drink-price">£2.95</span>
+            </div>
+
+            <div class="drink-row">
+              <div class="drink-info">
+                <span class="drink-name">Fresh Orange Juice</span>
+                <span class="drink-desc">Freshly squeezed, served cold</span>
+              </div>
+              <span class="drink-price">£2.50</span>
+            </div>
+
+            <div class="drink-row">
+              <div class="drink-info">
+                <span class="drink-name">Canned Soft Drink</span>
+                <span class="drink-desc"
+                  >Coke, Diet Coke, Lemonade or Fanta</span
+                >
+              </div>
+              <span class="drink-price">£1.50</span>
+            </div>
+
+            <div class="drink-row">
+              <div class="drink-info">
+                <span class="drink-name">Still / Sparkling Water</span>
+                <span class="drink-desc">500ml bottled water</span>
+              </div>
+              <span class="drink-price">£1.20</span>
+            </div>
+
+            <div class="drink-row">
+              <div class="drink-info">
+                <span class="drink-name">Glass of Milk</span>
+                <span class="drink-desc"
+                  >Full-fat or semi-skimmed, served cold</span
+                >
+              </div>
+              <span class="drink-price">£1.00</span>
+            </div>
+
+            <div class="drink-row">
+              <div class="drink-info">
+                <span class="drink-name">Fruit Juice Carton</span>
+                <span class="drink-desc">Apple or orange, 250ml</span>
+              </div>
+              <span class="drink-price">£1.20</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ SPECIALS ══ -->
+        <div class="tab-panel" data-panel="specials" role="tabpanel">
+          <div class="specials-banner reveal">
+            <div>
+              <span
+                class="text-section-label"
+                style="
+                  background: rgba(255, 255, 255, 0.15);
+                  color: rgba(255, 255, 255, 0.9);
+                "
+                >Changes daily</span
+              >
+              <h2>Today's specials are made fresh each morning.</h2>
+              <p>
+                Our daily specials depend on what's freshest. Call us on
+                <strong style="color: var(--color-white)"
+                  >+44 7783 461922</strong
+                >
+                or pop in to find out what's on today.
+              </p>
+            </div>
+            <a href="tel:+447783461922" class="btn btn-light">📞 Call us</a>
+          </div>
+
+          <div class="menu-grid-3">
+            <article class="menu-card reveal">
+              <img
+                class="menu-card-img"
+                src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600&q=80&fit=crop"
+                alt="Sticky toffee pudding"
+                loading="lazy"
+              />
+              <div class="menu-card-body">
+                <div class="menu-card-header">
+                  <span class="menu-card-title">Sticky Toffee Pudding</span>
+                  <span class="menu-card-price">£4.50</span>
+                </div>
+                <p class="menu-card-desc">
+                  Classic warm sponge with toffee sauce and Devon clotted cream
+                  or custard.
+                </p>
+                <div class="menu-card-tags">
+                  <span class="badge badge-amber">Dessert special</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="menu-card reveal reveal-delay-1">
+              <img
+                class="menu-card-img"
+                src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80&fit=crop"
+                alt="Roast of the day"
+                loading="lazy"
+              />
+              <div class="menu-card-body">
+                <div class="menu-card-header">
+                  <span class="menu-card-title">Roast of the Day</span>
+                  <span class="menu-card-price">£10.95</span>
+                </div>
+                <p class="menu-card-desc">
+                  Sunday roast served with all the trimmings — roasties, veg,
+                  Yorkshire pudding and gravy.
+                </p>
+                <div class="menu-card-tags">
+                  <span class="badge badge-amber">Sunday only</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="menu-card reveal reveal-delay-2">
+              <img
+                class="menu-card-img"
+                src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&q=80&fit=crop"
+                alt="Seasonal special"
+                loading="lazy"
+              />
+              <div class="menu-card-body">
+                <div class="menu-card-header">
+                  <span class="menu-card-title">Seasonal Special</span>
+                  <span class="menu-card-price">Ask us</span>
+                </div>
+                <p class="menu-card-desc">
+                  Our chef's seasonal creation — changes weekly based on the
+                  best local produce available.
+                </p>
+                <div class="menu-card-tags">
+                  <span class="badge badge-amber">Limited</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+      <!-- /container -->
+
+      <!-- CTA -->
+      <section class="cta-section" style="margin-top: var(--space-16)">
+        <div class="container">
+          <div class="cta-box reveal">
+            <span class="text-section-label">Ready to eat?</span>
+            <h2>Order for delivery or eat in.</h2>
+            <p>
+              Call us on
+              <strong style="color: var(--color-white)">+44 7783 461922</strong>
+              or use our contact form to place a delivery order across the EX17
+              area. We're open Monday to Saturday from 7:30am.
+            </p>
+            <div class="btn-group">
+              <a href="contact.html" class="btn btn-light">Order via form</a>
+              <a href="tel:+447783461922" class="btn btn-outline-light"
+                >📞 Call to order</a
+              >
+              <a href="delivery.html" class="btn btn-outline-light"
+                >Check delivery zones</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand" aria-label="Corner Canteen home">
+            <div class="brand-mark" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 11l19-9-9 19-2-8-8-2z" />
+              </svg>
+            </div>
+            <div class="brand-text">
+              <small>Crediton, Devon</small>
+              <strong>Corner Canteen</strong>
+            </div>
+          </a>
+          <p>
+            Fresh breakfasts, hot mains, sides and desserts served daily from 8
+            Park Street, Crediton. Eat in or get it delivered across EX17.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="delivery.html">Delivery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+447783461922">+44 7783 461922</a></li>
+            <li><a href="contact.html">Send a message</a></li>
+            <li><a href="about.html">8 Park Street, Crediton</a></li>
+            <li><a href="about.html">EX17 3HL, Devon</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>© 2026 Corner Canteen, Crediton. All rights reserved.</p>
+        <p>Fresh food · Local delivery · EX17</p>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,1137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delivery | Corner Canteen — Crediton, Devon</title>
+    <meta
+      name="description"
+      content="Corner Canteen delivers freshly cooked food across Crediton and the EX17 postcode area. Find out delivery zones, times, fees and how to order."
+    />
+    <meta name="theme-color" content="#f6f3ee" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <style>
+      /* ── KEY INFO CARDS ─────────────────────────────────── */
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-5);
+        margin-bottom: var(--space-16);
+      }
+
+      .info-card {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: var(--space-6);
+        box-shadow: var(--shadow-sm);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+        text-align: center;
+        align-items: center;
+      }
+
+      .info-card-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: var(--radius-md);
+        background: var(--color-primary-highlight);
+        display: grid;
+        place-items: center;
+        color: var(--color-primary-dark);
+        flex-shrink: 0;
+      }
+
+      .info-card-icon svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .info-card-value {
+        font-family: var(--font-display);
+        font-size: var(--text-4xl);
+        line-height: 1;
+        color: var(--color-primary);
+        font-weight: 700;
+      }
+
+      .info-card-label {
+        font-weight: 700;
+        font-size: var(--text-base);
+        color: var(--color-text);
+      }
+
+      .info-card-sub {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        line-height: 1.55;
+      }
+
+      /* ── TWO COL LAYOUT ─────────────────────────────────── */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-8);
+        align-items: start;
+        margin-bottom: var(--space-16);
+      }
+
+      .two-col-wide {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: var(--space-8);
+        align-items: start;
+        margin-bottom: var(--space-16);
+      }
+
+      /* ── ZONE MAP PLACEHOLDER ───────────────────────────── */
+      .zone-map {
+        border-radius: var(--radius-2xl);
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--color-border);
+        aspect-ratio: 4/3;
+        position: relative;
+      }
+
+      .zone-map img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .zone-map-overlay {
+        position: absolute;
+        bottom: var(--space-5);
+        left: var(--space-5);
+        right: var(--space-5);
+        background: rgba(30, 26, 20, 0.82);
+        color: var(--color-white);
+        border-radius: var(--radius-lg);
+        padding: var(--space-4) var(--space-5);
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        font-size: var(--text-sm);
+        font-weight: 600;
+      }
+
+      .zone-map-overlay svg {
+        width: 18px;
+        height: 18px;
+        color: var(--color-accent);
+        flex-shrink: 0;
+      }
+
+      /* ── ZONE LIST ──────────────────────────────────────── */
+      .zone-panel {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-2xl);
+        padding: var(--space-8);
+        box-shadow: var(--shadow-sm);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-5);
+      }
+
+      .zone-panel h2 {
+        font-family: var(--font-display);
+        font-size: var(--text-3xl);
+        line-height: 1;
+      }
+
+      .zone-panel p {
+        color: var(--color-text-muted);
+        font-size: var(--text-sm);
+        line-height: 1.65;
+      }
+
+      .zone-list {
+        display: grid;
+        gap: var(--space-3);
+      }
+
+      .zone-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-4);
+        padding: var(--space-3) var(--space-4);
+        background: var(--color-surface-2);
+        border-radius: var(--radius-md);
+        border: 1px solid var(--color-border);
+      }
+
+      .zone-item-left {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+      }
+
+      .zone-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .zone-dot-green {
+        background: #4ade80;
+      }
+      .zone-dot-amber {
+        background: var(--color-accent);
+      }
+
+      .zone-name {
+        font-weight: 700;
+        font-size: var(--text-sm);
+      }
+      .zone-postcode {
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+        margin-top: 1px;
+      }
+
+      .zone-fee {
+        font-weight: 800;
+        font-size: var(--text-sm);
+        color: var(--color-primary);
+        white-space: nowrap;
+      }
+
+      /* ── HOW TO ORDER ───────────────────────────────────── */
+      .order-steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-5);
+        margin-bottom: var(--space-16);
+      }
+
+      .order-step {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: var(--space-7);
+        box-shadow: var(--shadow-sm);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+      }
+
+      .step-num {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius-md);
+        background: var(--color-primary);
+        display: grid;
+        place-items: center;
+        font-family: var(--font-display);
+        font-size: var(--text-2xl);
+        color: var(--color-white);
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .order-step h3 {
+        font-size: var(--text-lg);
+        font-weight: 700;
+        line-height: 1.3;
+      }
+      .order-step p {
+        color: var(--color-text-muted);
+        font-size: var(--text-sm);
+        line-height: 1.65;
+      }
+
+      /* ── TIMES TABLE ────────────────────────────────────── */
+      .times-card {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-2xl);
+        padding: var(--space-8);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .times-card h2 {
+        font-family: var(--font-display);
+        font-size: var(--text-3xl);
+        line-height: 1;
+        margin-bottom: var(--space-2);
+      }
+
+      .times-card .sub {
+        color: var(--color-text-muted);
+        font-size: var(--text-sm);
+        margin-bottom: var(--space-6);
+      }
+
+      .times-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: var(--text-sm);
+      }
+
+      .times-table thead th {
+        text-align: left;
+        padding: var(--space-3) var(--space-4);
+        border-bottom: 2px solid var(--color-border);
+        font-weight: 700;
+        color: var(--color-text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: var(--text-xs);
+      }
+
+      .times-table tbody tr {
+        border-bottom: 1px solid var(--color-divider);
+        transition: background var(--transition);
+      }
+
+      .times-table tbody tr:last-child {
+        border-bottom: none;
+      }
+      .times-table tbody tr:hover {
+        background: var(--color-surface-2);
+      }
+
+      .times-table td {
+        padding: var(--space-3) var(--space-4);
+        color: var(--color-text-muted);
+      }
+
+      .times-table td:first-child {
+        font-weight: 700;
+        color: var(--color-text);
+      }
+
+      .times-table .closed {
+        color: var(--color-text-faint) !important;
+        font-style: italic;
+      }
+
+      .times-table .badge-cell {
+        text-align: right;
+      }
+
+      /* ── FAQ ────────────────────────────────────────────── */
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-5);
+        margin-bottom: var(--space-16);
+      }
+
+      .faq-card {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: var(--space-6);
+        box-shadow: var(--shadow-sm);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+      }
+
+      .faq-q {
+        font-weight: 700;
+        font-size: var(--text-base);
+        line-height: 1.35;
+      }
+      .faq-a {
+        color: var(--color-text-muted);
+        font-size: var(--text-sm);
+        line-height: 1.65;
+      }
+
+      /* ── NOTICE STRIP ───────────────────────────────────── */
+      .notice-strip {
+        background: var(--color-primary-highlight);
+        border: 1px solid rgba(61, 90, 62, 0.2);
+        border-radius: var(--radius-xl);
+        padding: var(--space-5) var(--space-6);
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+        margin-bottom: var(--space-16);
+        flex-wrap: wrap;
+      }
+
+      .notice-strip svg {
+        width: 22px;
+        height: 22px;
+        color: var(--color-primary);
+        flex-shrink: 0;
+      }
+
+      .notice-strip p {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        line-height: 1.6;
+        flex: 1;
+      }
+
+      .notice-strip strong {
+        color: var(--color-text);
+      }
+
+      /* ── RESPONSIVE ─────────────────────────────────────── */
+      @media (max-width: 1024px) {
+        .info-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .two-col {
+          grid-template-columns: 1fr;
+        }
+        .two-col-wide {
+          grid-template-columns: 1fr;
+        }
+        .order-steps {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .faq-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .info-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .order-steps {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="container nav-bar">
+        <a href="index.html" class="brand" aria-label="Corner Canteen home">
+          <div class="brand-mark" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 11l19-9-9 19-2-8-8-2z" />
+            </svg>
+          </div>
+          <div class="brand-text">
+            <small>Crediton, Devon</small>
+            <strong>Corner Canteen</strong>
+          </div>
+        </a>
+
+        <button
+          class="nav-toggle"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          type="button"
+        >
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav aria-label="Primary navigation">
+          <ul class="nav-links" id="primary-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="delivery.html">Delivery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li>
+              <a href="contact.html" class="btn btn-primary">Order Now</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <!-- PAGE HERO -->
+      <section class="page-hero">
+        <div class="container reveal">
+          <span class="text-section-label">Local delivery · EX17</span>
+          <h1>Fresh food delivered across Crediton.</h1>
+          <p>
+            We deliver freshly cooked meals across Crediton and the surrounding
+            EX17 area. Flat fee, no hidden charges, hot food at your door in
+            around 30 minutes.
+          </p>
+        </div>
+      </section>
+
+      <div class="container">
+        <!-- ══ KEY INFO CARDS ══ -->
+        <div class="info-grid">
+          <div class="info-card reveal">
+            <div class="info-card-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <div class="info-card-value">~30</div>
+            <div class="info-card-label">Minutes delivery</div>
+            <div class="info-card-sub">
+              Average delivery time across the EX17 area from when your order is
+              ready.
+            </div>
+          </div>
+
+          <div class="info-card reveal reveal-delay-1">
+            <div class="info-card-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              </svg>
+            </div>
+            <div class="info-card-value">£2.50</div>
+            <div class="info-card-label">Flat delivery fee</div>
+            <div class="info-card-sub">
+              One flat fee regardless of order size. No surprise charges at
+              checkout.
+            </div>
+          </div>
+
+          <div class="info-card reveal reveal-delay-2">
+            <div class="info-card-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <path d="M16 10a4 4 0 0 1-8 0" />
+              </svg>
+            </div>
+            <div class="info-card-value">£8</div>
+            <div class="info-card-label">Minimum order</div>
+            <div class="info-card-sub">
+              A minimum order of £8.00 applies to all delivery orders. No
+              minimum for eat-in.
+            </div>
+          </div>
+
+          <div class="info-card reveal reveal-delay-3">
+            <div class="info-card-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="1" y="3" width="15" height="13" rx="2" />
+                <path d="M16 8h4l3 3v4h-7V8z" />
+                <circle cx="5.5" cy="18.5" r="2.5" />
+                <circle cx="18.5" cy="18.5" r="2.5" />
+              </svg>
+            </div>
+            <div class="info-card-value">EX17</div>
+            <div class="info-card-label">Delivery zone</div>
+            <div class="info-card-sub">
+              We cover Crediton town centre and the surrounding EX17 postcode
+              area.
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ ZONE MAP + ZONE LIST ══ -->
+        <div class="two-col-wide reveal" style="margin-bottom: var(--space-16)">
+          <div class="zone-map">
+            <img
+              src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=900&q=80&fit=crop"
+              alt="Map of Crediton and surrounding EX17 delivery area"
+            />
+            <div class="zone-map-overlay">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Delivering across Crediton & EX17 — 8 Park Street, EX17 3HL
+            </div>
+          </div>
+
+          <div class="zone-panel">
+            <div>
+              <span class="text-section-label">Delivery zones</span>
+              <h2>Where we deliver.</h2>
+              <p>
+                We deliver to addresses across Crediton town and the wider EX17
+                postcode. Not sure if we cover your area? Give us a call on
+                <a
+                  href="tel:+447783461922"
+                  style="color: var(--color-primary); font-weight: 700"
+                  >+44 7783 461922</a
+                >
+                and we'll let you know.
+              </p>
+            </div>
+
+            <ul class="zone-list" role="list">
+              <li class="zone-item">
+                <div class="zone-item-left">
+                  <span
+                    class="zone-dot zone-dot-green"
+                    aria-hidden="true"
+                  ></span>
+                  <div>
+                    <div class="zone-name">Crediton Town Centre</div>
+                    <div class="zone-postcode">EX17 2, EX17 3</div>
+                  </div>
+                </div>
+                <span class="zone-fee">£2.50</span>
+              </li>
+              <li class="zone-item">
+                <div class="zone-item-left">
+                  <span
+                    class="zone-dot zone-dot-green"
+                    aria-hidden="true"
+                  ></span>
+                  <div>
+                    <div class="zone-name">Crediton East</div>
+                    <div class="zone-postcode">EX17 1</div>
+                  </div>
+                </div>
+                <span class="zone-fee">£2.50</span>
+              </li>
+              <li class="zone-item">
+                <div class="zone-item-left">
+                  <span
+                    class="zone-dot zone-dot-green"
+                    aria-hidden="true"
+                  ></span>
+                  <div>
+                    <div class="zone-name">Crediton West</div>
+                    <div class="zone-postcode">EX17 4</div>
+                  </div>
+                </div>
+                <span class="zone-fee">£2.50</span>
+              </li>
+              <li class="zone-item">
+                <div class="zone-item-left">
+                  <span
+                    class="zone-dot zone-dot-amber"
+                    aria-hidden="true"
+                  ></span>
+                  <div>
+                    <div class="zone-name">Sandford & Shobrooke</div>
+                    <div class="zone-postcode">EX17 4, EX17 6</div>
+                  </div>
+                </div>
+                <span class="zone-fee">£2.50</span>
+              </li>
+              <li class="zone-item">
+                <div class="zone-item-left">
+                  <span
+                    class="zone-dot zone-dot-amber"
+                    aria-hidden="true"
+                  ></span>
+                  <div>
+                    <div class="zone-name">Copplestone & Bow</div>
+                    <div class="zone-postcode">EX17 5</div>
+                  </div>
+                </div>
+                <span class="zone-fee">£2.50</span>
+              </li>
+              <li class="zone-item">
+                <div class="zone-item-left">
+                  <span
+                    class="zone-dot zone-dot-amber"
+                    aria-hidden="true"
+                  ></span>
+                  <div>
+                    <div class="zone-name">Morchard Bishop & Cheriton</div>
+                    <div class="zone-postcode">EX17 6</div>
+                  </div>
+                </div>
+                <span class="zone-fee">£2.50</span>
+              </li>
+            </ul>
+
+            <div
+              style="
+                display: flex;
+                gap: var(--space-4);
+                flex-wrap: wrap;
+                font-size: var(--text-xs);
+                color: var(--color-text-muted);
+                font-weight: 600;
+                align-items: center;
+              "
+            >
+              <span
+                style="display: flex; align-items: center; gap: var(--space-2)"
+                ><span
+                  class="zone-dot zone-dot-green"
+                  style="display: inline-block"
+                ></span>
+                Town centre</span
+              >
+              <span
+                style="display: flex; align-items: center; gap: var(--space-2)"
+                ><span
+                  class="zone-dot zone-dot-amber"
+                  style="display: inline-block"
+                ></span>
+                Surrounding villages</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ DELIVERY TIMES ══ -->
+        <div class="two-col reveal" style="margin-bottom: var(--space-16)">
+          <div class="times-card">
+            <h2>Delivery hours.</h2>
+            <p class="sub">
+              Orders must be placed at least 20 minutes before the end of the
+              delivery window. Last orders taken by phone.
+            </p>
+            <table class="times-table" aria-label="Delivery hours by day">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>Delivery window</th>
+                  <th>Last order</th>
+                  <th class="badge-cell">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Monday</td>
+                  <td>11:30am – 2:30pm</td>
+                  <td>2:10pm</td>
+                  <td class="badge-cell">
+                    <span class="badge badge-green">Open</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Tuesday</td>
+                  <td>11:30am – 2:30pm</td>
+                  <td>2:10pm</td>
+                  <td class="badge-cell">
+                    <span class="badge badge-green">Open</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Wednesday</td>
+                  <td>11:30am – 2:30pm</td>
+                  <td>2:10pm</td>
+                  <td class="badge-cell">
+                    <span class="badge badge-green">Open</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Thursday</td>
+                  <td>11:30am – 2:30pm</td>
+                  <td>2:10pm</td>
+                  <td class="badge-cell">
+                    <span class="badge badge-green">Open</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Friday</td>
+                  <td>11:30am – 2:30pm</td>
+                  <td>2:10pm</td>
+                  <td class="badge-cell">
+                    <span class="badge badge-green">Open</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Saturday</td>
+                  <td>11:30am – 1:30pm</td>
+                  <td>1:10pm</td>
+                  <td class="badge-cell">
+                    <span class="badge badge-amber">Limited</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Sunday</td>
+                  <td class="closed">No delivery</td>
+                  <td class="closed">—</td>
+                  <td class="badge-cell"><span class="badge">Closed</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div
+            style="display: flex; flex-direction: column; gap: var(--space-5)"
+          >
+            <div class="delivery-card">
+              <div
+                style="display: flex; align-items: center; gap: var(--space-3)"
+              >
+                <div class="info-card-icon" aria-hidden="true">
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3-8.57A2 2 0 0 1 3.73 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                    />
+                  </svg>
+                </div>
+                <h3>How to order</h3>
+              </div>
+              <p>
+                The quickest way to order is to call us directly on
+                <a
+                  href="tel:+447783461922"
+                  style="color: var(--color-primary); font-weight: 700"
+                  >+44 7783 461922</a
+                >. Alternatively, use our online contact form and we will
+                confirm your order by phone.
+              </p>
+              <a
+                href="contact.html"
+                class="btn btn-primary btn-sm"
+                style="align-self: flex-start"
+                >Use the order form</a
+              >
+            </div>
+
+            <div class="delivery-card">
+              <div
+                style="display: flex; align-items: center; gap: var(--space-3)"
+              >
+                <div class="info-card-icon" aria-hidden="true">
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="12" y1="1" x2="12" y2="23" />
+                    <path
+                      d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                    />
+                  </svg>
+                </div>
+                <h3>Payment</h3>
+              </div>
+              <p>
+                We accept cash on delivery and card payments. For card payments
+                please have your card ready at the door. We do not take payment
+                in advance for standard delivery orders.
+              </p>
+            </div>
+
+            <div class="delivery-card">
+              <div
+                style="display: flex; align-items: center; gap: var(--space-3)"
+              >
+                <div class="info-card-icon" aria-hidden="true">
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                </div>
+                <h3>Food quality guarantee</h3>
+              </div>
+              <p>
+                Every delivery order is packed hot and fresh. If your food
+                arrives cold or incorrect, call us immediately and we will make
+                it right.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ HOW TO ORDER STEPS ══ -->
+        <div style="margin-bottom: var(--space-8)">
+          <div class="section-head reveal">
+            <div>
+              <span class="text-section-label">Ordering process</span>
+              <h2 class="section-heading">How to place a delivery order.</h2>
+            </div>
+            <p class="section-subheading">
+              Simple, straightforward and no apps required. Just food, delivered
+              fresh.
+            </p>
+          </div>
+        </div>
+
+        <div class="order-steps" style="margin-bottom: var(--space-16)">
+          <div class="order-step reveal">
+            <div class="step-num">1</div>
+            <h3>Check the menu & zone</h3>
+            <p>
+              Browse the
+              <a
+                href="menu.html"
+                style="color: var(--color-primary); font-weight: 700"
+                >full menu</a
+              >
+              and confirm your address is within the EX17 delivery zone above.
+              If unsure, just call us.
+            </p>
+          </div>
+          <div class="order-step reveal reveal-delay-1">
+            <div class="step-num">2</div>
+            <h3>Call or message us</h3>
+            <p>
+              Phone us on
+              <a
+                href="tel:+447783461922"
+                style="color: var(--color-primary); font-weight: 700"
+                >+44 7783 461922</a
+              >
+              or submit the
+              <a
+                href="contact.html"
+                style="color: var(--color-primary); font-weight: 700"
+                >order form</a
+              >
+              with your items, address and preferred delivery time.
+            </p>
+          </div>
+          <div class="order-step reveal reveal-delay-2">
+            <div class="step-num">3</div>
+            <h3>We confirm & cook fresh</h3>
+            <p>
+              We'll confirm your order and cook everything fresh from scratch.
+              No reheating — every order is made to order.
+            </p>
+          </div>
+        </div>
+
+        <!-- ══ NOTICE STRIP ══ -->
+        <div class="notice-strip reveal">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+          <p>
+            <strong>Please note:</strong> Delivery times may vary during busy
+            periods, adverse weather or public holidays. We will always call you
+            if there is any delay to your order. For same-day delivery, orders
+            must be placed during the delivery window listed above.
+          </p>
+        </div>
+
+        <!-- ══ FAQ ══ -->
+        <div style="margin-bottom: var(--space-8)">
+          <div class="section-head reveal">
+            <div>
+              <span class="text-section-label">Delivery FAQs</span>
+              <h2 class="section-heading">Common questions.</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-card reveal">
+            <p class="faq-q">Do you deliver on Sundays?</p>
+            <p class="faq-a">
+              No, we do not offer delivery on Sundays. The canteen is open for
+              eat-in on Sundays but delivery is Monday to Saturday only.
+            </p>
+          </div>
+          <div class="faq-card reveal reveal-delay-1">
+            <p class="faq-q">Can I pre-order for a specific time?</p>
+            <p class="faq-a">
+              Yes. When you call or submit the order form, just let us know your
+              preferred delivery time and we will do our best to accommodate it.
+            </p>
+          </div>
+          <div class="faq-card reveal">
+            <p class="faq-q">What if I'm outside the EX17 area?</p>
+            <p class="faq-a">
+              We currently only deliver within the EX17 postcode area. If you're
+              just outside, give us a call and we'll see what we can do — we're
+              always happy to help where possible.
+            </p>
+          </div>
+          <div class="faq-card reveal reveal-delay-1">
+            <p class="faq-q">Can I add special instructions?</p>
+            <p class="faq-a">
+              Absolutely. Whether it's dietary requirements, sauce preferences
+              or specific cooking requests — just mention it when you order and
+              we'll do our best to accommodate.
+            </p>
+          </div>
+          <div class="faq-card reveal">
+            <p class="faq-q">Is there a maximum order size?</p>
+            <p class="faq-a">
+              No maximum. For large group or office orders we recommend calling
+              ahead so we can allocate enough preparation time to ensure
+              everything arrives fresh and hot.
+            </p>
+          </div>
+          <div class="faq-card reveal reveal-delay-1">
+            <p class="faq-q">How do I pay for my delivery order?</p>
+            <p class="faq-a">
+              We accept cash or card on delivery. Our driver carries a card
+              reader so contactless payment is available. We do not take payment
+              in advance for standard orders.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- /container -->
+
+      <!-- CTA -->
+      <section class="cta-section">
+        <div class="container">
+          <div class="cta-box reveal">
+            <span class="text-section-label">Order now</span>
+            <h2>Ready for fresh food at your door?</h2>
+            <p>
+              Call us on
+              <strong style="color: var(--color-white)">+44 7783 461922</strong>
+              or use our contact form to place your order. We deliver Monday to
+              Saturday, 11:30am to 2:30pm across EX17.
+            </p>
+            <div class="btn-group">
+              <a href="contact.html" class="btn btn-light">Order via form</a>
+              <a href="tel:+447783461922" class="btn btn-outline-light"
+                >📞 Call to order</a
+              >
+              <a href="menu.html" class="btn btn-outline-light"
+                >Browse the menu</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand" aria-label="Corner Canteen home">
+            <div class="brand-mark" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 11l19-9-9 19-2-8-8-2z" />
+              </svg>
+            </div>
+            <div class="brand-text">
+              <small>Crediton, Devon</small>
+              <strong>Corner Canteen</strong>
+            </div>
+          </a>
+          <p>
+            Fresh breakfasts, hot mains, sides and desserts served daily from 8
+            Park Street, Crediton. Eat in or get it delivered across EX17.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="delivery.html">Delivery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+447783461922">+44 7783 461922</a></li>
+            <li><a href="contact.html">Send a message</a></li>
+            <li><a href="about.html">8 Park Street, Crediton</a></li>
+            <li><a href="about.html">EX17 3HL, Devon</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>© 2026 Corner Canteen, Crediton. All rights reserved.</p>
+        <p>Fresh food · Local delivery · EX17</p>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+  </body>
+</html>

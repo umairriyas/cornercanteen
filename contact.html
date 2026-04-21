@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact & Order | Corner Canteen — Crediton, Devon</title>
+    <meta
+      name="description"
+      content="Contact Corner Canteen to place a delivery order, ask a question or make an enquiry. Call us or use our online form — we respond within a few hours."
+    />
+    <meta name="theme-color" content="#f6f3ee" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <style>
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 0.7fr;
+        gap: var(--space-8);
+        align-items: start;
+        margin-bottom: var(--space-16);
+      }
+
+      /* ── FORM ───────────────────────────────────────────── */
+      .contact-form {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-2xl);
+        padding: clamp(var(--space-6), 4vw, var(--space-10));
+        box-shadow: var(--shadow-sm);
+        display: grid;
+        gap: var(--space-5);
+      }
+
+      .form-submit-btn {
+        width: 100%;
+        justify-content: center;
+        min-height: 54px;
+        font-size: var(--text-base);
+        border-radius: var(--radius-lg);
+      }
+
+      .form-note {
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+        text-align: center;
+        line-height: 1.65;
+      }
+
+      /* Field error state */
+      .form-group input.error,
+      .form-group textarea.error,
+      .form-group select.error {
+        border-color: var(--color-error-text);
+        box-shadow: 0 0 0 3px var(--color-error-bg);
+      }
+
+      .field-error {
+        font-size: var(--text-xs);
+        color: var(--color-error-text);
+        font-weight: 600;
+        margin-top: 2px;
+        display: none;
+      }
+
+      .field-error.visible {
+        display: block;
+      }
+
+      /* Result message */
+      #form-result {
+        display: none;
+        padding: var(--space-4) var(--space-5);
+        border-radius: var(--radius-md);
+        font-size: var(--text-sm);
+        font-weight: 600;
+        line-height: 1.6;
+      }
+
+      #form-result.success {
+        background: var(--color-success-bg);
+        border: 1px solid var(--color-success-border);
+        color: var(--color-success-text);
+        display: block;
+      }
+
+      #form-result.error {
+        background: var(--color-error-bg);
+        border: 1px solid var(--color-error-border);
+        color: var(--color-error-text);
+        display: block;
+      }
+
+      /* ── SIDEBAR ────────────────────────────────────────── */
+      .contact-sidebar {
+        display: grid;
+        gap: var(--space-4);
+      }
+
+      .contact-info-card {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: var(--space-6);
+        box-shadow: var(--shadow-sm);
+        display: grid;
+        gap: var(--space-5);
+      }
+
+      .contact-info-card h3 {
+        font-size: var(--text-lg);
+        font-weight: 700;
+      }
+      .contact-info-card .card-sub {
+        color: var(--color-text-muted);
+        font-size: var(--text-sm);
+        margin-top: calc(-1 * var(--space-3));
+      }
+
+      .contact-detail {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-3);
+      }
+
+      .contact-detail-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-md);
+        background: var(--color-surface-offset);
+        display: grid;
+        place-items: center;
+        color: var(--color-primary);
+        flex-shrink: 0;
+      }
+
+      .contact-detail-text p {
+        font-weight: 700;
+        font-size: var(--text-sm);
+        margin-bottom: var(--space-1);
+      }
+      .contact-detail-text span {
+        color: var(--color-text-muted);
+        font-size: var(--text-sm);
+        line-height: 1.55;
+      }
+
+      .hours-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: var(--text-sm);
+      }
+      .hours-table tr {
+        border-bottom: 1px solid var(--color-divider);
+      }
+      .hours-table tr:last-child {
+        border-bottom: none;
+      }
+      .hours-table td {
+        padding: var(--space-2) 0;
+        color: var(--color-text-muted);
+      }
+      .hours-table td:last-child {
+        text-align: right;
+        font-weight: 600;
+        color: var(--color-text);
+      }
+      .hours-table .closed {
+        color: var(--color-text-faint) !important;
+        font-weight: 400 !important;
+      }
+
+      .notice-card {
+        background: var(--color-primary-highlight);
+        border: 1px solid rgba(61, 90, 62, 0.2);
+        border-radius: var(--radius-xl);
+        padding: var(--space-5) var(--space-6);
+      }
+      .notice-card strong {
+        display: block;
+        font-size: var(--text-sm);
+        margin-bottom: var(--space-2);
+        color: var(--color-primary-dark);
+      }
+      .notice-card span {
+        color: var(--color-text-muted);
+        font-size: var(--text-sm);
+        line-height: 1.6;
+      }
+
+      @media (max-width: 1024px) {
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="container nav-bar">
+        <a href="index.html" class="brand" aria-label="Corner Canteen home">
+          <div class="brand-mark" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 11l19-9-9 19-2-8-8-2z" />
+            </svg>
+          </div>
+          <div class="brand-text">
+            <small>Crediton, Devon</small>
+            <strong>Corner Canteen</strong>
+          </div>
+        </a>
+
+        <button
+          class="nav-toggle"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          type="button"
+        >
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav aria-label="Primary navigation">
+          <ul class="nav-links" id="primary-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="delivery.html">Delivery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li>
+              <a href="contact.html" class="btn btn-primary">Order Now</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <!-- PAGE HERO -->
+      <section class="page-hero">
+        <div class="container reveal">
+          <span class="text-section-label">Order · Enquire · Get in touch</span>
+          <h1>Place an order or drop us a message.</h1>
+          <p>
+            Use the form below to place a delivery order or send us an enquiry.
+            For the fastest response, give us a call directly on
+            <a
+              href="tel:+447783461922"
+              style="color: var(--color-primary); font-weight: 700"
+              >+44 7783 461922</a
+            >.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container contact-grid">
+          <!-- ══ FORM ══ -->
+          <div class="reveal">
+            <div id="form-result"></div>
+
+            <!--
+            ════════════════════════════════════════════════════
+            FORMSUBMIT SETUP — one-time activation needed
+            ════════════════════════════════════════════════════
+            STEP 1: Deploy the site live (FormSubmit needs a
+                    live URL — won't work on localhost)
+            STEP 2: Submit the form once on the live site
+            STEP 3: Check your email and click the activation
+                    link FormSubmit sends you
+            STEP 4: Done — all future submissions go straight
+                    to your inbox
+            ════════════════════════════════════════════════════
+            Replace YOUR_EMAIL@EMAIL.COM below with the
+            client's actual email address before deploying.
+            ════════════════════════════════════════════════════
+            -->
+            <form
+              class="contact-form"
+              id="contact-form"
+              action="https://formsubmit.co/YOUR_EMAIL@EMAIL.COM"
+              method="POST"
+              novalidate
+            >
+              <!-- FormSubmit config -->
+              <input
+                type="hidden"
+                name="_subject"
+                value="New order / enquiry — Corner Canteen"
+              />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_captcha" value="false" />
+              <!-- Redirect after success — change to your live thank-you page or remove -->
+              <input
+                type="hidden"
+                name="_next"
+                value="https://cornercanteen.co.uk/contact.html"
+              />
+              <!-- Honeypot spam trap -->
+              <input
+                type="text"
+                name="_honey"
+                style="display: none"
+                tabindex="-1"
+                autocomplete="off"
+              />
+
+              <div>
+                <span class="text-section-label" style="margin-bottom: 0"
+                  >Order or enquiry form</span
+                >
+                <p
+                  style="
+                    color: var(--color-text-muted);
+                    font-size: var(--text-sm);
+                    margin-top: var(--space-1);
+                  "
+                >
+                  Fields marked
+                  <span style="color: var(--color-primary); font-weight: 700"
+                    >*</span
+                  >
+                  are required.
+                </p>
+              </div>
+
+              <!-- Name -->
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="first-name"
+                    >First name
+                    <span class="req" style="color: var(--color-primary)"
+                      >*</span
+                    ></label
+                  >
+                  <input
+                    type="text"
+                    id="first-name"
+                    name="First Name"
+                    placeholder="e.g. Sarah"
+                    autocomplete="given-name"
+                  />
+                  <span class="field-error" id="err-first-name"
+                    >Please enter your first name.</span
+                  >
+                </div>
+                <div class="form-group">
+                  <label for="last-name"
+                    >Last name
+                    <span class="req" style="color: var(--color-primary)"
+                      >*</span
+                    ></label
+                  >
+                  <input
+                    type="text"
+                    id="last-name"
+                    name="Last Name"
+                    placeholder="e.g. Johnson"
+                    autocomplete="family-name"
+                  />
+                  <span class="field-error" id="err-last-name"
+                    >Please enter your last name.</span
+                  >
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label for="email"
+                  >Email address
+                  <span class="req" style="color: var(--color-primary)"
+                    >*</span
+                  ></label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  autocomplete="email"
+                />
+                <span class="field-error" id="err-email"
+                  >Please enter a valid email address.</span
+                >
+              </div>
+
+              <!-- Phone -->
+              <div class="form-group">
+                <label for="phone"
+                  >Phone number
+                  <span style="color: var(--color-text-faint); font-weight: 400"
+                    >(optional)</span
+                  ></label
+                >
+                <input
+                  type="tel"
+                  id="phone"
+                  name="Phone Number"
+                  placeholder="+44 7700 000000"
+                  autocomplete="tel"
+                />
+              </div>
+
+              <!-- Order type -->
+              <div class="form-group">
+                <label for="order-type"
+                  >Enquiry type
+                  <span class="req" style="color: var(--color-primary)"
+                    >*</span
+                  ></label
+                >
+                <select id="order-type" name="Enquiry Type">
+                  <option value="" disabled selected>Select an option</option>
+                  <option value="Delivery Order">Delivery Order</option>
+                  <option value="Eat-In Pre-Order">Eat-In Pre-Order</option>
+                  <option value="Large / Group Order">
+                    Large / Group Order
+                  </option>
+                  <option value="Catering Enquiry">Catering Enquiry</option>
+                  <option value="General Question">General Question</option>
+                </select>
+                <span class="field-error" id="err-order-type"
+                  >Please select an enquiry type.</span
+                >
+              </div>
+
+              <!-- Address (for delivery) -->
+              <div class="form-group">
+                <label for="address"
+                  >Delivery address
+                  <span style="color: var(--color-text-faint); font-weight: 400"
+                    >(if ordering delivery)</span
+                  ></label
+                >
+                <input
+                  type="text"
+                  id="address"
+                  name="Delivery Address"
+                  placeholder="e.g. 14 High Street, Crediton, EX17 3AA"
+                  autocomplete="street-address"
+                />
+              </div>
+
+              <!-- Preferred time -->
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="pref-date"
+                    >Preferred date
+                    <span
+                      style="color: var(--color-text-faint); font-weight: 400"
+                      >(optional)</span
+                    ></label
+                  >
+                  <input type="date" id="pref-date" name="Preferred Date" />
+                </div>
+                <div class="form-group">
+                  <label for="pref-time"
+                    >Preferred time
+                    <span
+                      style="color: var(--color-text-faint); font-weight: 400"
+                      >(optional)</span
+                    ></label
+                  >
+                  <input
+                    type="time"
+                    id="pref-time"
+                    name="Preferred Time"
+                    min="11:30"
+                    max="14:30"
+                  />
+                </div>
+              </div>
+
+              <!-- Message -->
+              <div class="form-group">
+                <label for="message"
+                  >Order details or message
+                  <span class="req" style="color: var(--color-primary)"
+                    >*</span
+                  ></label
+                >
+                <textarea
+                  id="message"
+                  name="Message"
+                  placeholder="Tell us what you'd like to order, any dietary requirements, or anything else we should know."
+                ></textarea>
+                <span class="field-error" id="err-message"
+                  >Please enter your message or order details.</span
+                >
+              </div>
+
+              <!-- Submit -->
+              <button
+                type="submit"
+                id="submit-btn"
+                class="btn btn-primary form-submit-btn"
+              >
+                Send message →
+              </button>
+
+              <p class="form-note">
+                We aim to respond within a few hours during opening hours.<br />
+                For same-day delivery orders please call us directly.<br />
+                Your information is used only to process your order and is never
+                shared.
+              </p>
+            </form>
+          </div>
+
+          <!-- ══ SIDEBAR ══ -->
+          <aside class="contact-sidebar reveal reveal-delay-1">
+            <div class="contact-info-card">
+              <h3>Contact details</h3>
+              <p class="card-sub">
+                Call us for the fastest response — especially for same-day
+                delivery.
+              </p>
+
+              <div class="contact-detail">
+                <div class="contact-detail-icon" aria-hidden="true">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3-8.57A2 2 0 0 1 3.73 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                    />
+                  </svg>
+                </div>
+                <div class="contact-detail-text">
+                  <p>Phone</p>
+                  <span
+                    ><a
+                      href="tel:+447783461922"
+                      style="color: var(--color-primary); font-weight: 700"
+                      >+44 7783 461922</a
+                    ></span
+                  >
+                </div>
+              </div>
+
+              <div class="contact-detail">
+                <div class="contact-detail-icon" aria-hidden="true">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <div class="contact-detail-text">
+                  <p>Address</p>
+                  <span>8 Park Street<br />Crediton, Devon<br />EX17 3HL</span>
+                </div>
+              </div>
+
+              <div class="contact-detail">
+                <div class="contact-detail-icon" aria-hidden="true">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="1" y="3" width="15" height="13" rx="2" />
+                    <path d="M16 8h4l3 3v4h-7V8z" />
+                    <circle cx="5.5" cy="18.5" r="2.5" />
+                    <circle cx="18.5" cy="18.5" r="2.5" />
+                  </svg>
+                </div>
+                <div class="contact-detail-text">
+                  <p>Delivery zone</p>
+                  <span
+                    >EX17 postcode area<br />£2.50 flat fee · £8 minimum</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Hours -->
+            <div class="contact-info-card">
+              <h3>Opening hours</h3>
+              <table class="hours-table" aria-label="Opening hours">
+                <tbody>
+                  <tr>
+                    <td>Monday – Friday</td>
+                    <td>7:30am – 3:00pm</td>
+                  </tr>
+                  <tr>
+                    <td>Saturday</td>
+                    <td>7:30am – 1:30pm</td>
+                  </tr>
+                  <tr>
+                    <td>Sunday</td>
+                    <td class="closed">Closed</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Delivery notice -->
+            <div class="notice-card">
+              <strong>🚚 Delivery orders</strong>
+              <span
+                >Delivery runs <strong>Mon–Sat 11:30am – 2:30pm</strong>. For
+                same-day delivery please call us directly. Orders placed via
+                this form will be confirmed by phone before we start
+                cooking.</span
+              >
+            </div>
+
+            <!-- Call CTA -->
+            <a
+              href="tel:+447783461922"
+              class="btn btn-primary"
+              style="width: 100%; justify-content: center"
+            >
+              📞 Call us now
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta-section">
+        <div class="container">
+          <div class="cta-box reveal">
+            <span class="text-section-label">We're open now</span>
+            <h2>Fresh food ready and waiting.</h2>
+            <p>
+              Pop into the canteen at 8 Park Street or get it delivered across
+              EX17. Open Monday to Saturday from 7:30am — delivery from 11:30am.
+            </p>
+            <div class="btn-group">
+              <a href="menu.html" class="btn btn-light">Browse the menu</a>
+              <a href="delivery.html" class="btn btn-outline-light"
+                >Delivery info</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand" aria-label="Corner Canteen home">
+            <div class="brand-mark" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 11l19-9-9 19-2-8-8-2z" />
+              </svg>
+            </div>
+            <div class="brand-text">
+              <small>Crediton, Devon</small>
+              <strong>Corner Canteen</strong>
+            </div>
+          </a>
+          <p>
+            Fresh breakfasts, hot mains, sides and desserts served daily from 8
+            Park Street, Crediton. Eat in or get it delivered across EX17.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="delivery.html">Delivery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+447783461922">+44 7783 461922</a></li>
+            <li><a href="contact.html">Send a message</a></li>
+            <li><a href="about.html">8 Park Street, Crediton</a></li>
+            <li><a href="about.html">EX17 3HL, Devon</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>© 2026 Corner Canteen, Crediton. All rights reserved.</p>
+        <p>Fresh food · Local delivery · EX17</p>
+      </div>
+    </footer>
+
+    <!-- ════════════════════════════════════════════════════════
+         INLINE JAVASCRIPT — Validation + FormSubmit handler
+         ════════════════════════════════════════════════════════ -->
+    <script>
+      (function () {
+        "use strict";
+
+        var form = document.getElementById("contact-form");
+        var result = document.getElementById("form-result");
+        var btn = document.getElementById("submit-btn");
+
+        /* ── helpers ── */
+        function showError(inputId, errorId) {
+          var input = document.getElementById(inputId);
+          var err = document.getElementById(errorId);
+          if (input) input.classList.add("error");
+          if (err) err.classList.add("visible");
+        }
+
+        function clearError(inputId, errorId) {
+          var input = document.getElementById(inputId);
+          var err = document.getElementById(errorId);
+          if (input) input.classList.remove("error");
+          if (err) err.classList.remove("visible");
+        }
+
+        function isValidEmail(val) {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
+        }
+
+        /* ── clear errors on input ── */
+        [
+          ["first-name", "err-first-name"],
+          ["last-name", "err-last-name"],
+          ["email", "err-email"],
+          ["order-type", "err-order-type"],
+          ["message", "err-message"],
+        ].forEach(function (pair) {
+          var el = document.getElementById(pair[0]);
+          if (el) {
+            el.addEventListener("input", function () {
+              clearError(pair[0], pair[1]);
+            });
+            el.addEventListener("change", function () {
+              clearError(pair[0], pair[1]);
+            });
+          }
+        });
+
+        /* ── validate ── */
+        function validate() {
+          var valid = true;
+
+          var firstName = document.getElementById("first-name").value.trim();
+          var lastName = document.getElementById("last-name").value.trim();
+          var email = document.getElementById("email").value.trim();
+          var orderType = document.getElementById("order-type").value;
+          var message = document.getElementById("message").value.trim();
+
+          if (!firstName) {
+            showError("first-name", "err-first-name");
+            valid = false;
+          }
+          if (!lastName) {
+            showError("last-name", "err-last-name");
+            valid = false;
+          }
+
+          if (!email || !isValidEmail(email)) {
+            showError("email", "err-email");
+            valid = false;
+          }
+
+          if (!orderType) {
+            showError("order-type", "err-order-type");
+            valid = false;
+          }
+          if (!message) {
+            showError("message", "err-message");
+            valid = false;
+          }
+
+          return valid;
+        }
+
+        /* ── submit ── */
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          result.className = "";
+          result.style.display = "none";
+
+          if (!validate()) {
+            result.className = "error";
+            result.textContent =
+              "⚠️ Please fill in all required fields before submitting.";
+            result.style.display = "block";
+            result.scrollIntoView({ behavior: "smooth", block: "center" });
+            return;
+          }
+
+          btn.disabled = true;
+          btn.textContent = "Sending…";
+
+          /* FormSubmit uses standard form POST — we fetch it as AJAX */
+          var data = new FormData(form);
+
+          fetch(form.action, {
+            method: "POST",
+            body: data,
+            headers: { Accept: "application/json" },
+          })
+            .then(function (res) {
+              /* FormSubmit returns a redirect, not JSON — so any 2xx or 3xx = success */
+              if (res.ok || res.type === "opaqueredirect") {
+                result.className = "success";
+                result.innerHTML =
+                  '✅ <strong>Message sent!</strong> Thank you — we will be in touch shortly. For same-day delivery please also call us on <a href="tel:+447783461922" style="color:var(--color-success-text);font-weight:700;">+44 7783 461922</a>.';
+                form.reset();
+              } else {
+                throw new Error("Server error");
+              }
+            })
+            .catch(function () {
+              result.className = "error";
+              result.innerHTML =
+                '❌ Something went wrong. Please try again or call us on <a href="tel:+447783461922" style="color:var(--color-error-text);font-weight:700;">+44 7783 461922</a>.';
+            })
+            .finally(function () {
+              result.style.display = "block";
+              result.scrollIntoView({ behavior: "smooth", block: "center" });
+              btn.disabled = false;
+              btn.textContent = "Send message →";
+            });
+        });
+      })();
+    </script>
+
+    <script src="assets/js/main.js" defer></script>
+  </body>
+</html>

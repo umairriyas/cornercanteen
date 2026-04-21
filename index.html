@@ -1,0 +1,894 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Corner Canteen | Fresh Food & Local Delivery — Crediton, Devon
+    </title>
+    <meta
+      name="description"
+      content="Corner Canteen serves freshly made breakfasts, hot mains, sides and desserts from 8 Park Street, Crediton. Order in-store or get it delivered to your door."
+    />
+    <meta name="theme-color" content="#f6f3ee" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <style>
+      /* ── HERO ─────────────────────────────────────────────── */
+      .hero {
+        padding: var(--space-12) 0 var(--space-20);
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-6);
+        align-items: stretch;
+        min-height: 640px;
+      }
+
+      .hero-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(var(--space-8), 4vw, var(--space-12));
+        background: linear-gradient(
+          160deg,
+          rgba(255, 255, 255, 0.5),
+          rgba(255, 255, 255, 0.15)
+        );
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-2xl);
+        box-shadow: var(--shadow-md);
+      }
+
+      .hero-copy h1 {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 6.5vw, 5.8rem);
+        line-height: 0.91;
+        max-width: 11ch;
+        margin-bottom: var(--space-5);
+      }
+
+      .hero-copy p {
+        max-width: 52ch;
+        color: var(--color-text-muted);
+        font-size: var(--text-md);
+        margin-bottom: var(--space-7);
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-3);
+        margin-top: var(--space-7);
+      }
+
+      .hero-stat {
+        padding: var(--space-4);
+        background: rgba(255, 255, 255, 0.65);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        text-align: center;
+      }
+
+      .hero-stat strong {
+        display: block;
+        font-size: var(--text-xl);
+        font-family: var(--font-display);
+        line-height: 1;
+        margin-bottom: var(--space-1);
+        color: var(--color-primary);
+      }
+
+      .hero-stat span {
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+        font-weight: 600;
+      }
+
+      /* Hero image mosaic */
+      .hero-visual {
+        display: grid;
+        grid-template-columns: 1fr 160px;
+        grid-template-rows: 1fr 1fr;
+        gap: var(--space-3);
+      }
+
+      .hero-img-main {
+        grid-row: 1 / 3;
+        border-radius: var(--radius-2xl);
+        overflow: hidden;
+        border: 1px solid var(--color-border);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .hero-img-main img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-img-sm {
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        border: 1px solid var(--color-border);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .hero-img-sm img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* ── SPECIALS ─────────────────────────────────────────── */
+      .specials-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-5);
+      }
+
+      /* ── HOW DELIVERY WORKS ───────────────────────────────── */
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-5);
+      }
+
+      .step-card {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: var(--space-6);
+        box-shadow: var(--shadow-sm);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+      }
+
+      .step-number {
+        width: 44px;
+        height: 44px;
+        border-radius: var(--radius-md);
+        background: var(--color-primary-highlight);
+        display: grid;
+        place-items: center;
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+        font-weight: 700;
+        color: var(--color-primary-dark);
+        flex-shrink: 0;
+      }
+
+      .step-card h3 {
+        font-size: var(--text-base);
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      .step-card p {
+        color: var(--color-text-muted);
+        font-size: var(--text-sm);
+        line-height: 1.6;
+      }
+
+      /* ── DELIVERY BANNER ──────────────────────────────────── */
+      .delivery-banner {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-2xl);
+        padding: clamp(var(--space-8), 4vw, var(--space-12));
+        box-shadow: var(--shadow-sm);
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: var(--space-8);
+        align-items: center;
+        margin-bottom: var(--space-20);
+      }
+
+      .delivery-banner h2 {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        line-height: 0.95;
+        margin-bottom: var(--space-3);
+      }
+
+      .delivery-banner p {
+        color: var(--color-text-muted);
+        max-width: 54ch;
+      }
+
+      .delivery-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-3);
+        margin-top: var(--space-4);
+      }
+
+      .delivery-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-2) var(--space-4);
+        border-radius: var(--radius-full);
+        background: var(--color-primary-highlight);
+        color: var(--color-primary-dark);
+        font-size: var(--text-sm);
+        font-weight: 700;
+      }
+
+      /* ── RESPONSIVE ───────────────────────────────────────── */
+      @media (max-width: 1024px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+          min-height: auto;
+        }
+        .hero-visual {
+          min-height: 420px;
+          grid-template-rows: 1fr 160px;
+        }
+        .steps-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .delivery-banner {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .specials-grid {
+          grid-template-columns: 1fr;
+        }
+        .steps-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-visual {
+          grid-template-columns: 1fr;
+          grid-template-rows: 360px 160px;
+        }
+        .hero-img-main {
+          grid-row: auto;
+        }
+        .hero-stats {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-stats {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="container nav-bar">
+        <a href="index.html" class="brand" aria-label="Corner Canteen home">
+          <div class="brand-mark" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 11l19-9-9 19-2-8-8-2z" />
+            </svg>
+          </div>
+          <div class="brand-text">
+            <small>Crediton, Devon</small>
+            <strong>Corner Canteen</strong>
+          </div>
+        </a>
+
+        <button
+          class="nav-toggle"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          type="button"
+        >
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav aria-label="Primary navigation">
+          <ul class="nav-links" id="primary-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="delivery.html">Delivery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li>
+              <a href="contact.html" class="btn btn-primary">Order Now</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <!-- ═══ HERO ═══ -->
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <span class="text-section-label"
+              >Fresh food · Crediton · Delivery</span
+            >
+            <h1>Good food, made fresh, at the corner.</h1>
+            <p>
+              Corner Canteen serves freshly prepared breakfasts, hot mains,
+              homemade sides and warm desserts from the heart of Crediton — eat
+              in or get it delivered to your door.
+            </p>
+
+            <div class="btn-group">
+              <a href="menu.html" class="btn btn-primary">See the menu</a>
+              <a href="delivery.html" class="btn btn-secondary"
+                >Check delivery</a
+              >
+            </div>
+
+            <ul class="hero-stats" role="list">
+              <li class="hero-stat">
+                <strong>30′</strong>
+                <span>Avg. delivery time</span>
+              </li>
+              <li class="hero-stat">
+                <strong>£2.50</strong>
+                <span>Flat delivery fee</span>
+              </li>
+              <li class="hero-stat">
+                <strong>EX17</strong>
+                <span>Delivery zone</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="hero-visual reveal reveal-delay-1">
+            <div class="hero-img-main">
+              <img
+                src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900&q=80&fit=crop"
+                alt="Busy canteen kitchen with fresh food being prepared"
+                width="900"
+                height="1200"
+              />
+            </div>
+            <div class="hero-img-sm">
+              <img
+                src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80&fit=crop"
+                alt="Freshly plated hot meal"
+                width="400"
+                height="300"
+                loading="lazy"
+              />
+            </div>
+            <div class="hero-img-sm">
+              <img
+                src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=400&q=80&fit=crop"
+                alt="Full English breakfast on a plate"
+                width="400"
+                height="300"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ TRUST BAR ═══ -->
+      <div class="trust-bar">
+        <div class="container trust-bar-inner">
+          <div class="trust-item">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            Fresh ingredients every morning
+          </div>
+          <div class="trust-item">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            Open Mon–Sat from 7:30am
+          </div>
+          <div class="trust-item">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="1" y="3" width="15" height="13" rx="2" />
+              <path d="M16 8h4l3 3v4h-7V8z" />
+              <circle cx="5.5" cy="18.5" r="2.5" />
+              <circle cx="18.5" cy="18.5" r="2.5" />
+            </svg>
+            Local delivery across EX17
+          </div>
+          <div class="trust-item">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+              />
+            </svg>
+            Loved by Crediton locals
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ TODAY'S SPECIALS ═══ -->
+      <section class="section">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <span class="text-section-label">On the menu today</span>
+              <h2 class="section-heading">Today's fresh specials.</h2>
+            </div>
+            <div>
+              <p class="section-subheading">
+                Specials change daily based on what's fresh. Check back or call
+                us to find out what's cooking.
+              </p>
+              <a
+                href="menu.html"
+                class="btn btn-outline-primary"
+                style="margin-top: var(--space-4)"
+                >See full menu</a
+              >
+            </div>
+          </div>
+
+          <div class="specials-grid">
+            <article class="menu-card reveal">
+              <img
+                class="menu-card-img"
+                src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&q=80&fit=crop"
+                alt="Full English breakfast with eggs, bacon, beans and toast"
+                loading="lazy"
+              />
+              <div class="menu-card-body">
+                <div class="menu-card-header">
+                  <span class="menu-card-title">Full English Breakfast</span>
+                  <span class="menu-card-price">£7.50</span>
+                </div>
+                <p class="menu-card-desc">
+                  Two eggs your way, back bacon, pork sausage, baked beans,
+                  grilled tomato and thick-cut toast.
+                </p>
+                <div class="menu-card-tags">
+                  <span class="badge badge-amber">Today's special</span>
+                  <span class="badge">Breakfast</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="menu-card reveal reveal-delay-1">
+              <img
+                class="menu-card-img"
+                src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=600&q=80&fit=crop"
+                alt="Hearty beef stew with crusty bread"
+                loading="lazy"
+              />
+              <div class="menu-card-body">
+                <div class="menu-card-header">
+                  <span class="menu-card-title"
+                    >Beef & Root Vegetable Stew</span
+                  >
+                  <span class="menu-card-price">£9.95</span>
+                </div>
+                <p class="menu-card-desc">
+                  Slow-cooked Devon beef with carrots, parsnips and potatoes in
+                  a rich gravy. Served with crusty bread.
+                </p>
+                <div class="menu-card-tags">
+                  <span class="badge badge-amber">Today's special</span>
+                  <span class="badge">Mains</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="menu-card reveal reveal-delay-2">
+              <img
+                class="menu-card-img"
+                src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600&q=80&fit=crop"
+                alt="Warm sticky toffee pudding with custard"
+                loading="lazy"
+              />
+              <div class="menu-card-body">
+                <div class="menu-card-header">
+                  <span class="menu-card-title">Sticky Toffee Pudding</span>
+                  <span class="menu-card-price">£4.50</span>
+                </div>
+                <p class="menu-card-desc">
+                  Classic warm sponge with toffee sauce, served with Devon
+                  clotted cream or custard.
+                </p>
+                <div class="menu-card-tags">
+                  <span class="badge badge-amber">Today's special</span>
+                  <span class="badge">Desserts</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ HOW DELIVERY WORKS ═══ -->
+      <section class="section--tinted">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <span class="text-section-label">How it works</span>
+              <h2 class="section-heading">
+                Hot food to your door in four easy steps.
+              </h2>
+            </div>
+            <p class="section-subheading">
+              We deliver across Crediton and the surrounding EX17 area. No apps,
+              no fuss — just call or message us.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <div class="step-card reveal">
+              <div class="step-number">1</div>
+              <h3>Browse the menu</h3>
+              <p>
+                Check today's specials online or give us a call. We'll tell you
+                exactly what's fresh and available.
+              </p>
+            </div>
+
+            <div class="step-card reveal reveal-delay-1">
+              <div class="step-number">2</div>
+              <h3>Place your order</h3>
+              <p>
+                Call us on
+                <a
+                  href="tel:+447783461922"
+                  style="color: var(--color-primary); font-weight: 700"
+                  >+44 7783 461922</a
+                >
+                or use the contact form. Give us your address and preferred
+                delivery time.
+              </p>
+            </div>
+
+            <div class="step-card reveal reveal-delay-2">
+              <div class="step-number">3</div>
+              <h3>We prepare fresh</h3>
+              <p>
+                Your order is cooked fresh from scratch. We don't reheat —
+                everything is made to order.
+              </p>
+            </div>
+
+            <div class="step-card reveal reveal-delay-3">
+              <div class="step-number">4</div>
+              <h3>Delivered to you</h3>
+              <p>
+                Your food arrives hot and ready within approximately 30 minutes
+                across the EX17 area.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ DELIVERY INFO BANNER ═══ -->
+      <section class="section" style="padding-top: var(--space-20)">
+        <div class="container">
+          <div class="delivery-banner reveal">
+            <div>
+              <span class="text-accent-label">Local delivery · EX17</span>
+              <h2>Delivering freshly cooked food across Crediton.</h2>
+              <p>
+                We cover Crediton town centre and the surrounding EX17 postcode
+                area. Flat delivery fee, no minimum order surprises — just
+                honest, hot food at your door.
+              </p>
+              <div class="delivery-meta">
+                <span class="delivery-pill">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                  Mon–Sat 11:30am – 2:30pm
+                </span>
+                <span class="delivery-pill">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <line x1="12" y1="1" x2="12" y2="23" />
+                    <path
+                      d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                    />
+                  </svg>
+                  £2.50 flat delivery fee
+                </span>
+                <span class="delivery-pill">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+                    />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <path d="M16 10a4 4 0 0 1-8 0" />
+                  </svg>
+                  £8.00 minimum order
+                </span>
+                <span class="delivery-pill">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="1" y="3" width="15" height="13" rx="2" />
+                    <path d="M16 8h4l3 3v4h-7V8z" />
+                    <circle cx="5.5" cy="18.5" r="2.5" />
+                    <circle cx="18.5" cy="18.5" r="2.5" />
+                  </svg>
+                  ~30 min delivery
+                </span>
+              </div>
+            </div>
+            <div>
+              <a href="delivery.html" class="btn btn-primary"
+                >Full delivery info</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ MENU PREVIEW IMAGE ═══ -->
+      <section class="section">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <span class="text-section-label">Fresh every day</span>
+              <h2 class="section-heading">Breakfast, mains, sides and more.</h2>
+            </div>
+            <div>
+              <p class="section-subheading">
+                Everything on our menu is made fresh daily using locally sourced
+                ingredients where possible.
+              </p>
+              <a
+                href="menu.html"
+                class="btn btn-outline-primary"
+                style="margin-top: var(--space-4)"
+                >View full menu</a
+              >
+            </div>
+          </div>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              gap: var(--space-4);
+            "
+          >
+            <div
+              style="
+                border-radius: var(--radius-xl);
+                overflow: hidden;
+                height: 260px;
+                box-shadow: var(--shadow-sm);
+              "
+              class="reveal"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=500&q=80&fit=crop"
+                alt="Freshly made canteen breakfast"
+                style="width: 100%; height: 100%; object-fit: cover"
+                loading="lazy"
+              />
+            </div>
+            <div
+              style="
+                border-radius: var(--radius-xl);
+                overflow: hidden;
+                height: 260px;
+                box-shadow: var(--shadow-sm);
+              "
+              class="reveal reveal-delay-1"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=80&fit=crop"
+                alt="Fresh vegetables and salad sides"
+                style="width: 100%; height: 100%; object-fit: cover"
+                loading="lazy"
+              />
+            </div>
+            <div
+              style="
+                border-radius: var(--radius-xl);
+                overflow: hidden;
+                height: 260px;
+                box-shadow: var(--shadow-sm);
+              "
+              class="reveal reveal-delay-2"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1547592180-85f173990554?w=500&q=80&fit=crop"
+                alt="Hot soup and bread"
+                style="width: 100%; height: 100%; object-fit: cover"
+                loading="lazy"
+              />
+            </div>
+            <div
+              style="
+                border-radius: var(--radius-xl);
+                overflow: hidden;
+                height: 260px;
+                box-shadow: var(--shadow-sm);
+              "
+              class="reveal reveal-delay-3"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=500&q=80&fit=crop"
+                alt="Canteen dessert and drinks"
+                style="width: 100%; height: 100%; object-fit: cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ CTA ═══ -->
+      <section class="cta-section">
+        <div class="container">
+          <div class="cta-box reveal">
+            <span class="text-section-label">Ready to order?</span>
+            <h2>Call us or place an order online.</h2>
+            <p>
+              Reach us on
+              <strong style="color: var(--color-white)">+44 7783 461922</strong>
+              or use our contact form. We're open Monday to Saturday from 7:30am
+              and take delivery orders from 11:30am.
+            </p>
+            <div class="btn-group">
+              <a href="contact.html" class="btn btn-light">Order via form</a>
+              <a href="tel:+447783461922" class="btn btn-outline-light"
+                >📞 Call to order</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand" aria-label="Corner Canteen home">
+            <div class="brand-mark" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 11l19-9-9 19-2-8-8-2z" />
+              </svg>
+            </div>
+            <div class="brand-text">
+              <small>Crediton, Devon</small>
+              <strong>Corner Canteen</strong>
+            </div>
+          </a>
+          <p>
+            Fresh breakfasts, hot mains, sides and desserts served daily from 8
+            Park Street, Crediton. Eat in or get it delivered across EX17.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="delivery.html">Delivery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+447783461922">+44 7783 461922</a></li>
+            <li><a href="contact.html">Send a message</a></li>
+            <li><a href="about.html">8 Park Street, Crediton</a></li>
+            <li><a href="about.html">EX17 3HL, Devon</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>© 2026 Corner Canteen, Crediton. All rights reserved.</p>
+        <p>Fresh food · Local delivery · EX17</p>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+  </body>
+</html>
